@@ -49,3 +49,41 @@ the eval report can note it.
 
 20 rows checked manually against the corruption-type checklist (three walked
 through in full: merged, partial_refund, clean). All consistent.
+
+## 2026-10-15 — Day 2: split and Stage 1
+
+### What broke
+
+**Pandas merge suffixes only apply to colliding column names.** The harness
+assumed every column from both frames would get `_gt` / `_l` suffixes.
+`corruption_type` existed only in ground truth, so it stayed unsuffixed, and
+`groupby("corruption_type_gt")` raised KeyError. Fixed by using the actual
+name. Habit: after any merge, print `merged.columns` and check.
+
+**Precision exceeded 1.0 (1.0177).** `is_correct` was `predicted == truth`,
+which is True when both are empty — so correctly-left-unmatched rows counted
+as correct matches. Precision became correct/matched > 1, which is impossible.
+Fixed by requiring `len(predicted) > 0`. Habit: any ratio bounded by [0,1]
+that exceeds 1 means the metric is wrong, not that the result is great.
+
+**Empty files caused silent failures, twice.** `touch` creates empty files;
+pasting code is a separate step. Both `generate.py` and `harness.py` were
+touched but left empty. Failures were silent (no output) rather than loud.
+Habit: after writing any file, `wc -l` before running.
+
+### Stage 1 results (held-out, 152 rows)
+
+- correct: 113
+- wrong: 0
+- correctly_unmatched: 2
+- unresolved: 37
+- precision: 1.0
+- recall: 0.7434
+
+Stage 1 is the deterministic floor. Precision is perfect by construction;
+the work of Stage 2 is to raise recall without collapsing precision.
+
+### The split
+
+`heldout.json` committed before any matcher was written. Hash:
+`sha256:2a53fee6...`. `python -m src.split --verify` recomputes and checks it.
