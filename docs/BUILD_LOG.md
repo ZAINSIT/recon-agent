@@ -87,3 +87,45 @@ the work of Stage 2 is to raise recall without collapsing precision.
 
 `heldout.json` committed before any matcher was written. Hash:
 `sha256:2a53fee6...`. `python -m src.split --verify` recomputes and checks it. 
+
+
+## 2026-10-16 — Day 3: fuzzy matcher and the threshold
+
+### What broke
+
+**The threshold was inert.** The first sweep (0.50–0.99) returned identical
+results at every value. Cause: the corruption model produced references
+recoverable by normalized-exact lookup, so the fuzzy-similarity path was
+never exercised. 71 rows resolved by `normalized_exact`, 20 by
+`merged_sum_N`, 0 by `fuzzy_ref`. Fixed by adding a `substituted_digit`
+corruption type (5%) that forces genuine similarity scoring. Batch
+regenerated, split re-committed before any tuning.
+
+**The threshold was then a step function.** With token-overlap similarity,
+every reference sharing the `ord-2026-` prefix scored 0.5, so the sweep
+had two states, not a curve. Fixed by replacing token-overlap with
+Levenshtein edit-distance similarity. Now scores form a gradient and the
+threshold trades recall for precision.
+
+**Inferred refund/fee fallbacks produced four wrong matches.** A truncated
+or substituted reference can name a different real order; the fallback then
+explained a shortfall belonging to another order. Removed the inferred
+paths; kept recorded-refund and recorded-fee matching. Precision 0.9786 ->
+0.9921, recall 0.8954 -> 0.8235, wrong 3 -> 1.
+
+**Changed a function signature, forgot the caller.** `try_normalized` gained
+two parameters; the call site in `run()` still passed three. TypeError at
+runtime. Habit: after a signature change, grep the function name.
+
+### Result (held-out, threshold 0.85)
+
+- matched 127, correct 126, wrong 1, unresolved 24, correctly_unmatched 2
+- precision 0.9921, recall 0.8235
+- The remaining wrong match is a `merged_sum_2` coincidence: two unrelated
+  orders summed to a settlement amount. Left as a known limitation; a real
+  merged settlement's reference names its orders, and requiring that check
+  is left as future work.
+
+### Threshold
+
+Swept 0.60–0.99 on dev. Chose 0.85 (knee). Held-out run once. See D-08.
