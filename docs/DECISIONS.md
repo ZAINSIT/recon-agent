@@ -33,3 +33,24 @@ if the data shifts toward more ambiguous references.
 
 **The one held-out wrong match is not threshold-controlled.** It comes from
 the merged-sum path, which ignores the threshold. See D-09.
+
+
+## D-09: Inferred refund/fee fallbacks removed
+
+**Decided:** `try_refund_or_fee` accepts only deltas that match a refund or
+fee actually recorded on the order. The earlier "any shortfall 5–60% is a
+refund" fallback was removed.
+
+**Why:** It produced four wrong matches. A truncated or substituted
+reference can name a *different* real order, and the fallback then
+"explained" a shortfall belonging to another order. Precision rose from
+0.9786 to 0.9921 at the cost of 13 rows moving from matched to unresolved.
+
+**Why unresolved is better than a low-confidence wrong match:** In a money
+context, a confident wrong answer is worse than an honest "I don't know."
+The unresolved rows go to Stage 3, which proposes with a validator.
+
+**Consequence:** `partial_refund` now resolves zero of 12 on the full batch.
+The validator refuses to infer a refund when none is recorded. This is the
+intended behavior — the model can propose a refund, but the validator will
+not accept one without arithmetic to support it.

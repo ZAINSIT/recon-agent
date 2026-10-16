@@ -129,3 +129,66 @@ runtime. Habit: after a signature change, grep the function name.
 ### Threshold
 
 Swept 0.60–0.99 on dev. Chose 0.85 (knee). Held-out run once. See D-08.
+
+## 2026-10-16 — Day 3–4: LLM stage, validator, and the integration tax
+
+### What broke
+
+**The threshold was inert, then a step function, then a curve.** Three
+iterations. (1) The first sweep (0.50–0.99) returned identical results —
+the corruption model produced references recoverable by normalized-exact
+lookup, so the fuzzy-similarity path never ran. Added `substituted_digit`
+corruption (5%) to force it. (2) The second sweep was a two-state step —
+token-overlap similarity scored every `ord-2026-` reference at 0.5, so the
+threshold had no resolution. Replaced with Levenshtein edit-distance
+similarity. (3) Now a curve. See D-08.
+
+**Inferred refund/fee fallbacks produced four wrong matches.** A truncated or
+substituted reference can name a *different* real order; the fallback then
+"explained" a shortfall belonging to another order. Removed the inferred
+paths; kept recorded-refund and recorded-fee matching. Precision 0.9786 ->
+0.9921, wrong 3 -> 1. See D-09.
+
+**Five API-integration surprises in one session.**
+  - Model name retired: `gemini-2.5-flash-lite` → 404, must use `3.5-flash-lite`.
+  - `transport='rest'` removed from `HttpOptions`.
+  - JSON mode returned `[{...}]` instead of `{...}` for some rows.
+  - `return` inside `try` skipped the error handlers — a valid-JSON-but-wrong
+    shape returned a list and crashed later, outside any try.
+  - The SDK's `timeout` parameter only covers the connect phase. When the
+    server accepts but stalls, the client blocks in `ssl.recv` forever.
+    Fixed by passing a custom `httpx.Client` with `httpx.Timeout(30, connect=10)`,
+    *and* setting `timeout=30_000` in `HttpOptions` (without it the SDK passes
+    `timeout=None`, which overrides the client timeout), plus TCP keepalive
+    socket options, plus a thread-based wall-clock cap as a last resort.
+
+**The `no_match` path was mislabeled as rejection, and its reason was lost.**
+When the model proposed `reason: no_match`, the validator returned
+`accepted=True` with an empty match list. The accept condition required a
+non-empty list, so these fell into the reject branch and were counted as
+`llm_rejected` with an empty `validator_reason` — read back from CSV as `NaN`.
+51 of 61 "rejections" were the model correctly declining. Fixed with an
+explicit three-branch structure. The real rejection count is 11, not 61.
+
+**Changed a function signature, forgot the caller.** `try_normalized` gained
+two parameters; the call site still passed three. TypeError at runtime.
+
+### Result (held-out, full pipeline)
+
+- matched 132, correct 131, wrong 1, unresolved 19
+- precision 0.9924, recall 0.8562
+- Stage 3: 12 accepted, 48 declined, 11 rejected. Rejection rate on
+  proposals: 48%.
+
+### Method breakdown (full batch)
+
+exact 366 · normalized_exact 37 · merged_sum_2 18 · fuzzy_ref 13 ·
+fee_recorded 4 · llm_* 12 · llm_no_match 48 · llm_rejected 11
+
+### The pattern
+
+Every failure in this project was one of three kinds: a control-flow bug
+(`return` in `try`, missing `i +=`, missing branch), a boundary bug (API
+shape, column suffix, timeout propagation), or a metric bug (precision > 1,
+`no_match` counted as rejected). None were algorithmic. The lesson: check
+the bookkeeping and the boundaries first; the logic is usually fine.
