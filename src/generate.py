@@ -27,6 +27,7 @@ from faker import Faker
 CorruptionType = Literal[
     "clean",
     "truncated_ref",
+    "substituted_digit",
     "merged",
     "partial_refund",
     "fee_difference",
@@ -38,8 +39,9 @@ CorruptionType = Literal[
 # Chosen to mirror what a real bank feed looks like: mostly clean,
 # a long tail of messy shapes.
 CORRUPTION_MIX: dict[CorruptionType, float] = {
-    "clean":           0.70,
+    "clean":           0.65,
     "truncated_ref":   0.08,
+    "substituted_digit": 0.05,
     "merged":          0.05,
     "partial_refund":  0.05,
     "fee_difference":  0.05,
@@ -124,6 +126,25 @@ def _corrupt_reference(order_id: str, rng: random.Random) -> str:
     return order_id.lower()
 
 
+def _substitute_digit(order_id: str, rng: random.Random) -> str:
+    """
+    Change one digit in the reference to a different digit.
+
+    'ORD-2026-00173' -> 'ORD-2026-00179' (or similar).
+
+    The result is NOT recoverable by normalized-exact lookup:
+    it does not equal any real order id. It must be found by
+    similarity scoring, which is what exercises the threshold.
+    """
+    digits = [i for i, c in enumerate(order_id) if c.isdigit()]
+    if not digits:
+        return order_id
+    pos = rng.choice(digits)
+    original = order_id[pos]
+    replacement = rng.choice([d for d in "0123456789" if d != original])
+    return order_id[:pos] + replacement + order_id[pos + 1:]
+
+
 def build_settlements(
     orders: list[Order],
     rng: random.Random,
@@ -141,6 +162,7 @@ def build_settlements(
     mapped_types = [
         "clean",
         "truncated_ref",
+        "substituted_digit",
         "merged",
         "partial_refund",
         "fee_difference",
@@ -181,6 +203,20 @@ def build_settlements(
             ref = _corrupt_reference(order.order_id, rng)
             settlements.append(SettlementLine(sid, ref, order.amount,
                                               CURRENCY, settled_at, f"UPI/{ref}"))
+            truths.append(GroundTruthRow(sid, ctype, json.dumps([order.order_id]), 0.0))
+            i += 1
+        elif ctype == "substituted_digit":
+            ref = _substitute_digit(order.order_id, rng)
+            settlements.append(
+                SettlementLine(
+                    settlement_id=sid,
+                    reference=ref,
+                    amount=order.amount,
+                    currency=CURRENCY,
+                    settled_at=settled_at,
+                    narration=f"UPI/{ref}",
+                )
+            )
             truths.append(GroundTruthRow(sid, ctype, json.dumps([order.order_id]), 0.0))
             i += 1
 

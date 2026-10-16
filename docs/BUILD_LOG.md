@@ -86,4 +86,4 @@ the work of Stage 2 is to raise recall without collapsing precision.
 ### The split
 
 `heldout.json` committed before any matcher was written. Hash:
-`sha256:2a53fee6...`. `python -m src.split --verify` recomputes and checks it.
+`sha256:2a53fee6...`. `python -m src.split --verify` recomputes and checks it. 
