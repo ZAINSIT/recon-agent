@@ -43,44 +43,43 @@ up. Rejected proposals stay unresolved. A confident wrong answer is worse
 than an honest "I don't know."
 
 ## Architecture
-settlements.csv
-│
-▼
-┌─────────────┐ join on (order_id, amount), exact
-│ Stage 1 │ no fuzzy, no LLM
-│ Exact │──────────────────────────────► 366 matched
-└──────┬──────┘
-│ remainder
-▼
-┌─────────────┐ normalize refs → Levenshtein similarity
-│ Stage 2 │ merged-sum detection (2–3 orders)
-│ Fuzzy │ recorded refund / fee matching
-│ │──────────────────────────────► 72 matched
-└──────┬──────┘
-│ remainder (71 rows)
-▼
-┌─────────────┐ candidate set (≤5 orders)
-│ Stage 3 │──────────► LLM proposes {reason, order, evidence}
-│ LLM │ │
-│ │ ▼
-│ │ ┌──────────────────────┐
-│ │ │ Validator (pure) │
-│ │ │ - order in candidates?│
-│ │ │ - arithmetic holds? │
-│ │ │ - confidence sane? │
-│ │ └──────────┬───────────┘
-│ │ │
-│ │ accepted ──┴── rejected
-└──────┬──────┘ 12 11
-│ │ │
-│ ▼ ▼
-│ matched stays unresolved
-▼
-matched_ledger.csv + eval/report.md
+```mermaid
+flowchart TD
+    S["settlements.csv"] --> S1
+
+    S1["Stage 1: Exact - join on order_id and amount"]
+    S1 -->|"366 matched"| L["matched_ledger.csv"]
+    S1 -->|"remainder"| S2
+
+    S2["Stage 2: Fuzzy - normalize, Levenshtein, merged-sum, recorded refund/fee"]
+    S2 -->|"72 matched"| L
+    S2 -->|"remainder - 71 rows"| S3
+
+    S3["Stage 3: LLM - candidate set of 5 orders"] -->|"proposes"| V
+
+    V["Validator: pure function - order in candidates? arithmetic holds? confidence sane?"]
+
+    V -->|"accepted - 12"| L
+    V -->|"rejected - 11"| U["stays unresolved"]
+
+    L --> R["eval/report.md"]
+```
 
 The LLM sits behind the validator. The validator is a pure function of
 `(proposal, candidate_orders, settlement_amount)` — no I/O, no clock, no
 randomness. If it rejects, the row stays unresolved.
+
+Three stages, three different jobs. Stage 1 and Stage 2 are deterministic:
+same input, same output, every time. Stage 3 is the only place a model is
+involved, and it cannot complete a match on its own — every proposal goes
+through the validator, which re-derives the arithmetic rather than trusting
+the model's stated evidence.
+
+| Stage | Method | Deterministic? | Rows matched (full batch) |
+|---|---|---|---|
+| 1 | exact `(order_id, amount)` join | yes | 366 |
+| 2 | normalized / Levenshtein / merged-sum / recorded refund-fee | yes | 72 |
+| 3 | LLM proposal + validator | model proposes, code disposes | 12 |
 
 ## Results
 
@@ -153,7 +152,7 @@ what makes the metrics possible. It is also the main limitation: a real bank
 feed has corruption shapes this model does not cover.
 
 **The 0.99 precision is on data I control.** The `wrong_match_rate` is 1 in
-132 — a single merged-sum coincidence where two unrelated orders summed to a
+131 — a single merged-sum coincidence where two unrelated orders summed to a
 settlement amount. At this sample size, one error is within noise. The honest
 framing is that precision is high on *this* corruption model, not that it is
 high in general.
@@ -191,14 +190,17 @@ Known gaps:
 
 ## Built with
 
-Designed and built with Claude as a pair-programming partner. Every
-architectural decision is in `docs/DECISIONS.md`, made deliberately and
-defended there. The validator and the generator's invariant check are
-hand-written; the surrounding scaffolding was generated from specifications I
-wrote and reviewed. The build log in `docs/BUILD_LOG.md` records what broke,
-including the API-integration failures.
+Designed and built with Claude and DeepSeek as pair-programming partners. I
+wrote the generator, the three stages, the validator, and the eval harness;
+the models helped with design, debugging, and the surrounding scaffolding.
+Every architectural decision is in `docs/DECISIONS.md`, made deliberately and
+defended there. The build log in `docs/BUILD_LOG.md` records what broke —
+nine real bugs, each with a cause and a fix, including five API-integration
+failures and a free-tier quota exhaustion.
 
 ## Reproduce
+
+```bash
 python -m venv .venv && source .venv/Scripts/activate
 pip install -r requirements.txt
 
@@ -208,8 +210,9 @@ python -m src.split --seed 42 --heldout-fraction 0.30 --verify
 
 python -m src.stage1_exact
 python -m src.stage2_fuzzy --threshold 0.85
-python -m src.stage3_llm # needs GEMINI_API_KEY in .env
+python -m src.stage3_llm          # needs GEMINI_API_KEY in .env
 
 python -m eval.harness --ledger matched_ledger_stage3.csv
+```
 
 MIT Licensed
