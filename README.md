@@ -201,6 +201,10 @@ failures and a free-tier quota exhaustion.
 ## Reproduce
 
 ```bash
+# full pipeline in one command
+python -m src.pipeline
+
+#step by step
 python -m venv .venv && source .venv/Scripts/activate
 pip install -r requirements.txt
 
