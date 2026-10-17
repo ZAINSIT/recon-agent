@@ -153,7 +153,7 @@ what makes the metrics possible. It is also the main limitation: a real bank
 feed has corruption shapes this model does not cover.
 
 **The 0.99 precision is on data I control.** The `wrong_match_rate` is 1 in
-132 — a single merged-sum coincidence where two unrelated orders summed to a
+131 — a single merged-sum coincidence where two unrelated orders summed to a
 settlement amount. At this sample size, one error is within noise. The honest
 framing is that precision is high on *this* corruption model, not that it is
 high in general.
@@ -191,14 +191,17 @@ Known gaps:
 
 ## Built with
 
-Designed and built with Claude as a pair-programming partner. Every
-architectural decision is in `docs/DECISIONS.md`, made deliberately and
-defended there. The validator and the generator's invariant check are
-hand-written; the surrounding scaffolding was generated from specifications I
-wrote and reviewed. The build log in `docs/BUILD_LOG.md` records what broke,
-including the API-integration failures.
+Designed and built with Claude and DeepSeek as pair-programming partners. I
+wrote the generator, the three stages, the validator, and the eval harness;
+the models helped with design, debugging, and the surrounding scaffolding.
+Every architectural decision is in `docs/DECISIONS.md`, made deliberately and
+defended there. The build log in `docs/BUILD_LOG.md` records what broke —
+nine real bugs, each with a cause and a fix, including five API-integration
+failures and a free-tier quota exhaustion.
 
 ## Reproduce
+
+```bash
 python -m venv .venv && source .venv/Scripts/activate
 pip install -r requirements.txt
 
@@ -208,8 +211,9 @@ python -m src.split --seed 42 --heldout-fraction 0.30 --verify
 
 python -m src.stage1_exact
 python -m src.stage2_fuzzy --threshold 0.85
-python -m src.stage3_llm # needs GEMINI_API_KEY in .env
+python -m src.stage3_llm          # needs GEMINI_API_KEY in .env
 
 python -m eval.harness --ledger matched_ledger_stage3.csv
+```
 
 MIT Licensed
