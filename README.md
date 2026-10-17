@@ -43,44 +43,44 @@ up. Rejected proposals stay unresolved. A confident wrong answer is worse
 than an honest "I don't know."
 
 ## Architecture
-settlements.csv
-│
-▼
-┌─────────────┐ join on (order_id, amount), exact
-│ Stage 1 │ no fuzzy, no LLM
-│ Exact │──────────────────────────────► 366 matched
-└──────┬──────┘
-│ remainder
-▼
-┌─────────────┐ normalize refs → Levenshtein similarity
-│ Stage 2 │ merged-sum detection (2–3 orders)
-│ Fuzzy │ recorded refund / fee matching
-│ │──────────────────────────────► 72 matched
-└──────┬──────┘
-│ remainder (71 rows)
-▼
-┌─────────────┐ candidate set (≤5 orders)
-│ Stage 3 │──────────► LLM proposes {reason, order, evidence}
-│ LLM │ │
-│ │ ▼
-│ │ ┌──────────────────────┐
-│ │ │ Validator (pure) │
-│ │ │ - order in candidates?│
-│ │ │ - arithmetic holds? │
-│ │ │ - confidence sane? │
-│ │ └──────────┬───────────┘
-│ │ │
-│ │ accepted ──┴── rejected
-└──────┬──────┘ 12 11
-│ │ │
-│ ▼ ▼
-│ matched stays unresolved
-▼
-matched_ledger.csv + eval/report.md
+
+```mermaid
+flowchart TD
+    S[settlements.csv] --> S1
+
+    S1[Stage 1 · Exact<br/>join on order_id + amount<br/>no fuzzy, no LLM]
+    S1 -->|366 matched| L[matched_ledger.csv]
+    S1 -->|remainder| S2
+
+    S2[Stage 2 · Fuzzy<br/>normalize refs → Levenshtein<br/>merged-sum detection<br/>recorded refund / fee]
+    S2 -->|72 matched| L
+    S2 -->|remainder · 71 rows| S3
+
+    S3[Stage 3 · LLM<br/>candidate set ≤ 5 orders] -->|proposes| V
+
+    V[Validator · pure function<br/>order in candidate set?<br/>arithmetic holds?<br/>confidence sane?]
+
+    V -->|accepted · 12| L
+    V -->|rejected · 11| U[stays unresolved]
+
+    L --> R[eval/report.md]
+```
 
 The LLM sits behind the validator. The validator is a pure function of
 `(proposal, candidate_orders, settlement_amount)` — no I/O, no clock, no
 randomness. If it rejects, the row stays unresolved.
+
+Three stages, three different jobs. Stage 1 and Stage 2 are deterministic:
+same input, same output, every time. Stage 3 is the only place a model is
+involved, and it cannot complete a match on its own — every proposal goes
+through the validator, which re-derives the arithmetic rather than trusting
+the model's stated evidence.
+
+| Stage | Method | Deterministic? | Rows matched (full batch) |
+|---|---|---|---|
+| 1 | exact `(order_id, amount)` join | yes | 366 |
+| 2 | normalized / Levenshtein / merged-sum / recorded refund-fee | yes | 72 |
+| 3 | LLM proposal + validator | model proposes, code disposes | 12 |
 
 ## Results
 
