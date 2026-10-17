@@ -5,4 +5,4 @@ __pycache__/
 data/batch_001/*.csv
 !data/batch_001/.gitkeep
 eval/metrics.json
-.DS_Store
+.DS_Storeeval/threshold_sweep.csv
