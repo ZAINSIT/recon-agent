@@ -43,27 +43,26 @@ up. Rejected proposals stay unresolved. A confident wrong answer is worse
 than an honest "I don't know."
 
 ## Architecture
-
 ```mermaid
 flowchart TD
-    S[settlements.csv] --> S1
+    S["settlements.csv"] --> S1
 
-    S1[Stage 1 · Exact<br/>join on order_id + amount<br/>no fuzzy, no LLM]
-    S1 -->|366 matched| L[matched_ledger.csv]
-    S1 -->|remainder| S2
+    S1["Stage 1: Exact - join on order_id and amount"]
+    S1 -->|"366 matched"| L["matched_ledger.csv"]
+    S1 -->|"remainder"| S2
 
-    S2[Stage 2 · Fuzzy<br/>normalize refs → Levenshtein<br/>merged-sum detection<br/>recorded refund / fee]
-    S2 -->|72 matched| L
-    S2 -->|remainder · 71 rows| S3
+    S2["Stage 2: Fuzzy - normalize, Levenshtein, merged-sum, recorded refund/fee"]
+    S2 -->|"72 matched"| L
+    S2 -->|"remainder - 71 rows"| S3
 
-    S3[Stage 3 · LLM<br/>candidate set ≤ 5 orders] -->|proposes| V
+    S3["Stage 3: LLM - candidate set of 5 orders"] -->|"proposes"| V
 
-    V[Validator · pure function<br/>order in candidate set?<br/>arithmetic holds?<br/>confidence sane?]
+    V["Validator: pure function - order in candidates? arithmetic holds? confidence sane?"]
 
-    V -->|accepted · 12| L
-    V -->|rejected · 11| U[stays unresolved]
+    V -->|"accepted - 12"| L
+    V -->|"rejected - 11"| U["stays unresolved"]
 
-    L --> R[eval/report.md]
+    L --> R["eval/report.md"]
 ```
 
 The LLM sits behind the validator. The validator is a pure function of
