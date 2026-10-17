@@ -192,3 +192,21 @@ Every failure in this project was one of three kinds: a control-flow bug
 shape, column suffix, timeout propagation), or a metric bug (precision > 1,
 `no_match` counted as rejected). None were algorithmic. The lesson: check
 the bookkeeping and the boundaries first; the logic is usually fine.
+
+### Stage 3 reproducibility: free-tier quota exhausted
+
+The final reproducibility run returned `429 RESOURCE_EXHAUSTED` for all 71
+Stage 3 rows. The daily free-tier quota was exhausted by the cumulative API
+calls across several Stage 3 runs, each retrying up to 3x on failure.
+
+The system's response was correct: every row was marked `llm_error` and left
+unresolved. When the model is unavailable, the pipeline does not guess. This
+is the intended failure mode.
+
+The Stage 3 numbers reported in the README are from the last successful run
+before the quota was exhausted (accepted 12, no_match 48, rejected 11).
+Stage 1 and Stage 2 reproduce exactly from the seed; Stage 3 is bounded by
+the free-tier quota and was not reproduced on this run.
+
+Re-running requires a fresh daily quota. The throttle (4s between calls)
+keeps the run under the per-minute limit but does not help with the daily cap.
