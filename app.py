@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import ast
 
 import pandas as pd
 import plotly.graph_objects as go
@@ -109,6 +110,108 @@ def build_sankey(ledger: pd.DataFrame):
         plot_bgcolor="rgba(0,0,0,0)",
     )
     return fig
+@st.cache_data
+def build_code_graph():
+    """Parse the src/ directory and build a Plotly Sankey for function calls."""
+    src_dir = Path("src")
+    py_files = list(src_dir.glob("*.py"))
+    
+    # Add the harness if it exists
+    eval_file = Path("eval/harness.py")
+    if eval_file.exists():
+        py_files.append(eval_file)
+
+    # 1. First pass: find all function definitions
+    defined_funcs = set()
+    for file_path in py_files:
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                tree = ast.parse(f.read())
+            for node in ast.walk(tree):
+                if isinstance(node, ast.FunctionDef):
+                    defined_funcs.add(node.name)
+        except Exception:
+            pass
+
+    # 2. Second pass: find calls between our functions
+    edges = []
+    for file_path in py_files:
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                tree = ast.parse(f.read())
+
+            current_func = None
+            class CallVisitor(ast.NodeVisitor):
+                def visit_FunctionDef(self, node):
+                    nonlocal current_func
+                    previous = current_func
+                    current_func = node.name
+                    self.generic_visit(node)
+                    current_func = previous
+
+                def visit_Call(self, node):
+                    if current_func:
+                        name = None
+                        if isinstance(node.func, ast.Name):
+                            name = node.func.id
+                        elif isinstance(node.func, ast.Attribute):
+                            name = node.func.attr
+                        
+                        if name and name in defined_funcs:
+                            edges.append((current_func, name))
+                    self.generic_visit(node)
+            CallVisitor().visit(tree)
+        except Exception:
+            pass
+
+    # Deduplicate and remove self-loops
+    edges = list(set([(u, v) for u, v in edges if u != v]))
+
+    # 3. Build the Plotly graph
+    sources = [u for u, v in edges]
+    targets = [v for u, v in edges]
+    nodes = list(set(sources + targets))
+    node_indices = {node: i for i, node in enumerate(nodes)}
+    
+    source_idx = [node_indices[u] for u in sources]
+    target_idx = [node_indices[v] for v in targets]
+
+    colors = []
+    for n in nodes:
+        if n in ["main", "run", "pipeline"]:
+            colors.append("#6366f1") # Blue
+        elif n in ["validate", "ValidatorResult"]:
+            colors.append("#f59e0b") # Orange
+        elif n.startswith("stage"):
+            colors.append("#10b981") # Green
+        else:
+            colors.append("#94a3b8") # Grey
+
+    fig = go.Figure(data=[go.Sankey(
+        node=dict(
+            label=nodes,
+            pad=20,
+            thickness=20,
+            line=dict(color="black", width=0.5),
+            color=colors
+        ),
+        link=dict(
+            source=source_idx,
+            target=target_idx,
+            value=[1] * len(edges),
+            color="rgba(148,163,184,0.4)"
+        )
+    )])
+
+    fig.update_layout(
+        height=600,
+        margin=dict(l=10, r=10, t=30, b=10),
+        font=dict(size=13, family="Inter, system-ui, sans-serif"),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+    )
+    return fig
+
 def main():
     st.title("Recon · settlement flow")
     st.caption("How 509 settlements moved through the pipeline, and where they ended up.")
@@ -121,7 +224,16 @@ def main():
     col3.metric("Validator rejected", int((ledger["method_detail"] == "llm_rejected").sum()))
     col4.metric("Unresolved", int((ledger["stage"] == "unresolved").sum()))
 
-    st.plotly_chart(build_sankey(ledger), use_container_width=True)
+     
+    
+    tab1, tab2 = st.tabs(["📊 Data Flow (Sankey)", "💻 Code Architecture"])
+    
+    with tab1:
+        st.plotly_chart(build_sankey(ledger), use_container_width=True)
+        
+    with tab2:
+        st.plotly_chart(build_code_graph(), use_container_width=True)
+        st.caption("Every function in the repository, mapped by which function calls it. Built with Python's AST module.")
 
     st.subheader("Drill down")
     stages = [l for l in detail if l != "Settlements" and detail[l]]
