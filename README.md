@@ -1,5 +1,7 @@
 # Recon
 
+**[Live Demo](https://recon-agent-zainsit.streamlit.app/)** · **[GitHub Repo](https://github.com/ZAINSIT/recon-agent)**
+
 **Exact matching settles 72%. Fuzzy matching settles another 14%. The LLM,
 bounded by a deterministic validator, settles the last 2% — and every wrong
 match is reported.**
