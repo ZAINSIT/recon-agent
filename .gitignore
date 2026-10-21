@@ -7,3 +7,5 @@ data/batch_001/*.csv
 eval/metrics.json
 .DS_Store
 eval/threshold_sweep.csv
+!matched_ledger_stage3.csv
+!flow_detail.json

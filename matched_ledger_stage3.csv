@@ -1,0 +1,510 @@
+settlement_id,stage,matched_order_ids,confidence,method_detail,llm_proposal,validator_result,validator_reason,runtime_ms
+STL-00001,fuzzy,"[""ORD-2026-00001"", ""ORD-2026-00002""]",medium,merged_sum_2,,,,357
+STL-00002,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""The settlement amount 138.25 does not match the candidate order amount 197.50 nor account for any plausible fee or refund.""}",accepted,no_match,3242
+STL-00003,exact,"[""ORD-2026-00004""]",high,exact_match,,,,0
+STL-00004,exact,"[""ORD-2026-00005""]",high,exact_match,,,,0
+STL-00005,exact,"[""ORD-2026-00006""]",high,exact_match,,,,0
+STL-00006,exact,"[""ORD-2026-00007""]",high,exact_match,,,,0
+STL-00007,exact,"[""ORD-2026-00008""]",high,exact_match,,,,0
+STL-00008,exact,"[""ORD-2026-00009""]",high,exact_match,,,,0
+STL-00009,exact,"[""ORD-2026-00010""]",high,exact_match,,,,0
+STL-00010,fuzzy,"[""ORD-2026-00011""]",high,normalized_exact,,,,0
+STL-00011,exact,"[""ORD-2026-00012""]",high,exact_match,,,,0
+STL-00012,exact,"[""ORD-2026-00012""]",high,exact_match,,,,0
+STL-00013,exact,"[""ORD-2026-00013""]",high,exact_match,,,,0
+STL-00014,exact,"[""ORD-2026-00014""]",high,exact_match,,,,0
+STL-00015,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders have an amount matching the settlement amount of 1855.92.""}",accepted,no_match,1129
+STL-00016,exact,"[""ORD-2026-00016""]",high,exact_match,,,,0
+STL-00017,exact,"[""ORD-2026-00017""]",high,exact_match,,,,0
+STL-00018,exact,"[""ORD-2026-00018""]",high,exact_match,,,,0
+STL-00019,exact,"[""ORD-2026-00019""]",high,exact_match,,,,0
+STL-00020,exact,"[""ORD-2026-00020""]",high,exact_match,,,,0
+STL-00021,exact,"[""ORD-2026-00021""]",high,exact_match,,,,0
+STL-00022,exact,"[""ORD-2026-00022""]",high,exact_match,,,,0
+STL-00023,exact,"[""ORD-2026-00023""]",high,exact_match,,,,0
+STL-00024,exact,"[""ORD-2026-00023""]",high,exact_match,,,,0
+STL-00025,fuzzy,"[""ORD-2026-00024"", ""ORD-2026-00025""]",medium,merged_sum_2,,,,222
+STL-00026,exact,"[""ORD-2026-00026""]",high,exact_match,,,,0
+STL-00027,exact,"[""ORD-2026-00027""]",high,exact_match,,,,0
+STL-00028,exact,"[""ORD-2026-00028""]",high,exact_match,,,,0
+STL-00029,fuzzy,"[""ORD-2026-00029"", ""ORD-2026-00030""]",medium,merged_sum_2,,,,337
+STL-00030,fuzzy,"[""ORD-2026-00031""]",high,normalized_exact,,,,0
+STL-00031,fuzzy,"[""ORD-2026-00032""]",medium,fuzzy_ref:0.91,,,,128
+STL-00032,exact,"[""ORD-2026-00033""]",high,exact_match,,,,0
+STL-00033,fuzzy,"[""ORD-2026-00034""]",medium,fuzzy_ref:0.91,,,,124
+STL-00034,exact,"[""ORD-2026-00035""]",high,exact_match,,,,0
+STL-00035,exact,"[""ORD-2026-00036""]",high,exact_match,,,,0
+STL-00036,exact,"[""ORD-2026-00037""]",high,exact_match,,,,0
+STL-00037,exact,"[""ORD-2026-00038""]",high,exact_match,,,,0
+STL-00038,exact,"[""ORD-2026-00039""]",high,exact_match,,,,0
+STL-00039,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00490"", ""confidence"": ""high"", ""evidence"": ""Order amount minus fee (4310.85 - 45.51) does not match, wait: 4737.40 minus 47.37? Let's check ORD-2026-00040: reference matches settlement exactly, and amount 4737.40 with fee difference? Wait, 4737.40 - 4690.03 = 47.37 fee.""}",rejected,"fee arithmetic fails: delta=379.18, fee=45.51",1488
+STL-00040,exact,"[""ORD-2026-00041""]",high,exact_match,,,,0
+STL-00041,exact,"[""ORD-2026-00042""]",high,exact_match,,,,0
+STL-00042,exact,"[""ORD-2026-00043""]",high,exact_match,,,,0
+STL-00043,exact,"[""ORD-2026-00044""]",high,exact_match,,,,0
+STL-00044,llm,"[""ORD-2026-00045""]",low,llm_fee_difference,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00045"", ""confidence"": ""low"", ""evidence"": ""The settlement amount is significantly less than the exact order amount, but the reference matches directly.""}",accepted,,1221
+STL-00045,fuzzy,"[""ORD-2026-00046""]",high,normalized_exact,,,,0
+STL-00046,exact,"[""ORD-2026-00047""]",high,exact_match,,,,0
+STL-00047,exact,"[""ORD-2026-00048""]",high,exact_match,,,,0
+STL-00048,exact,"[""ORD-2026-00049""]",high,exact_match,,,,0
+STL-00049,exact,"[""ORD-2026-00050""]",high,exact_match,,,,0
+STL-00050,exact,"[""ORD-2026-00051""]",high,exact_match,,,,0
+STL-00051,exact,"[""ORD-2026-00052""]",high,exact_match,,,,0
+STL-00052,fuzzy,"[""ORD-2026-00053""]",high,normalized_exact,,,,0
+STL-00053,exact,"[""ORD-2026-00054""]",high,exact_match,,,,0
+STL-00054,fuzzy,"[""ORD-2026-00055""]",high,fee_recorded,,,,128
+STL-00055,exact,"[""ORD-2026-00056""]",high,exact_match,,,,0
+STL-00056,fuzzy,"[""ORD-2026-00057""]",high,fee_recorded,,,,130
+STL-00057,fuzzy,"[""ORD-2026-00058""]",medium,fuzzy_ref:0.91,,,,83
+STL-00058,exact,"[""ORD-2026-00059""]",high,exact_match,,,,0
+STL-00059,exact,"[""ORD-2026-00060""]",high,exact_match,,,,0
+STL-00060,exact,"[""ORD-2026-00061""]",high,exact_match,,,,0
+STL-00061,exact,"[""ORD-2026-00062""]",high,exact_match,,,,0
+STL-00062,exact,"[""ORD-2026-00063""]",high,exact_match,,,,0
+STL-00063,fuzzy,"[""ORD-2026-00064"", ""ORD-2026-00065""]",medium,merged_sum_2,,,,187
+STL-00064,exact,"[""ORD-2026-00066""]",high,exact_match,,,,0
+STL-00065,exact,"[""ORD-2026-00067""]",high,exact_match,,,,0
+STL-00066,exact,"[""ORD-2026-00068""]",high,exact_match,,,,0
+STL-00067,exact,"[""ORD-2026-00069""]",high,exact_match,,,,0
+STL-00068,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 6786.23.""}",accepted,no_match,1166
+STL-00069,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 4676.8 within expected rules.""}",accepted,no_match,5177
+STL-00070,fuzzy,"[""ORD-2026-00074""]",high,normalized_exact,,,,0
+STL-00071,exact,"[""ORD-2026-00075""]",high,exact_match,,,,0
+STL-00072,exact,"[""ORD-2026-00076""]",high,exact_match,,,,0
+STL-00073,exact,"[""ORD-2026-00077""]",high,exact_match,,,,0
+STL-00074,exact,"[""ORD-2026-00078""]",high,exact_match,,,,0
+STL-00075,exact,"[""ORD-2026-00079""]",high,exact_match,,,,0
+STL-00076,exact,"[""ORD-2026-00080""]",high,exact_match,,,,0
+STL-00077,exact,"[""ORD-2026-00081""]",high,exact_match,,,,0
+STL-00078,exact,"[""ORD-2026-00081""]",high,exact_match,,,,0
+STL-00079,exact,"[""ORD-2026-00082""]",high,exact_match,,,,0
+STL-00080,exact,"[""ORD-2026-00083""]",high,exact_match,,,,0
+STL-00081,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 3602.18.""}",accepted,no_match,1493
+STL-00082,exact,"[""ORD-2026-00085""]",high,exact_match,,,,0
+STL-00083,exact,"[""ORD-2026-00086""]",high,exact_match,,,,0
+STL-00084,exact,"[""ORD-2026-00087""]",high,exact_match,,,,0
+STL-00085,fuzzy,"[""ORD-2026-00088"", ""ORD-2026-00089""]",medium,merged_sum_2,,,,136
+STL-00086,exact,"[""ORD-2026-00090""]",high,exact_match,,,,0
+STL-00087,fuzzy,"[""ORD-2026-00091""]",high,fee_recorded,,,,59
+STL-00088,exact,"[""ORD-2026-00092""]",high,exact_match,,,,0
+STL-00089,exact,"[""ORD-2026-00092""]",high,exact_match,,,,0
+STL-00090,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders have an amount matching the settlement amount of 4499.68.""}",accepted,no_match,1180
+STL-00091,exact,"[""ORD-2026-00094""]",high,exact_match,,,,0
+STL-00092,exact,"[""ORD-2026-00095""]",high,exact_match,,,,0
+STL-00093,exact,"[""ORD-2026-00096""]",high,exact_match,,,,0
+STL-00094,exact,"[""ORD-2026-00097""]",high,exact_match,,,,0
+STL-00095,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""The settlement amount of 3260.28 does not match any candidate order amount or fit any valid difference criteria.""}",accepted,no_match,1190
+STL-00096,fuzzy,"[""ORD-2026-00099"", ""ORD-2026-00100""]",medium,merged_sum_2,,,,145
+STL-00097,exact,"[""ORD-2026-00101""]",high,exact_match,,,,0
+STL-00098,exact,"[""ORD-2026-00102""]",high,exact_match,,,,0
+STL-00099,exact,"[""ORD-2026-00103""]",high,exact_match,,,,0
+STL-00100,fuzzy,"[""ORD-2026-00104""]",high,normalized_exact,,,,0
+STL-00101,fuzzy,"[""ORD-2026-00105""]",medium,fuzzy_ref:0.92,,,,106
+STL-00102,exact,"[""ORD-2026-00106""]",high,exact_match,,,,0
+STL-00103,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount minus fees or refunds matches the settlement amount of 653.74 for reference ORD-2026-00107.""}",accepted,no_match,1180
+STL-00104,exact,"[""ORD-2026-00108""]",high,exact_match,,,,0
+STL-00105,exact,"[""ORD-2026-00109""]",high,exact_match,,,,0
+STL-00106,exact,"[""ORD-2026-00110""]",high,exact_match,,,,0
+STL-00107,exact,"[""ORD-2026-00111""]",high,exact_match,,,,0
+STL-00108,exact,"[""ORD-2026-00112""]",high,exact_match,,,,0
+STL-00109,exact,"[""ORD-2026-00113""]",high,exact_match,,,,0
+STL-00110,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": null, ""confidence"": ""low"", ""evidence"": ""No candidate order amount matches the settlement amount of 1587.84 even after accounting for fees.""}",rejected,missing matched_order_id,1447
+STL-00111,exact,"[""ORD-2026-00115""]",high,exact_match,,,,0
+STL-00112,exact,"[""ORD-2026-00116""]",high,exact_match,,,,0
+STL-00113,exact,"[""ORD-2026-00117""]",high,exact_match,,,,0
+STL-00114,exact,"[""ORD-2026-00118""]",high,exact_match,,,,0
+STL-00115,exact,"[""ORD-2026-00119""]",high,exact_match,,,,0
+STL-00116,exact,"[""ORD-2026-00120""]",high,exact_match,,,,0
+STL-00117,llm,"[""ORD-2026-00121""]",low,llm_fee_difference,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00121"", ""confidence"": ""low"", ""evidence"": ""The settlement amount 2216.3 is close to order ORD-2026-00121 amount 2238.69 with a difference of 22.39.""}",accepted,,1349
+STL-00118,fuzzy,"[""ORD-2026-00122""]",medium,fuzzy_ref:0.92,,,,85
+STL-00119,exact,"[""ORD-2026-00123""]",high,exact_match,,,,0
+STL-00120,exact,"[""ORD-2026-00124""]",high,exact_match,,,,0
+STL-00121,exact,"[""ORD-2026-00125""]",high,exact_match,,,,0
+STL-00122,fuzzy,"[""ORD-2026-00126""]",high,normalized_exact,,,,0
+STL-00123,exact,"[""ORD-2026-00127""]",high,exact_match,,,,0
+STL-00124,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00228"", ""confidence"": ""high"", ""evidence"": ""Order amount minus fee equals 3104.13... wait, let me check again. Order amount 3145.77 - fee 41.64 = 3104.13. Actually, none match directly. Let's look at ORD-2026-00128: amount=2497.17, settlement=2472.2. Difference is 24.97, which looks like a percentage fee or similar difference, but reference exact match.""}",rejected,"fee arithmetic fails: delta=-673.57, fee=41.64",1397
+STL-00125,fuzzy,"[""ORD-2026-00129""]",medium,fuzzy_ref:0.92,,,,108
+STL-00126,exact,"[""ORD-2026-00130""]",high,exact_match,,,,0
+STL-00127,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders have an amount matching the settlement amount of 2613.89.""}",accepted,no_match,1156
+STL-00128,fuzzy,"[""ORD-2026-00132"", ""ORD-2026-00133""]",medium,merged_sum_2,,,,284
+STL-00129,exact,"[""ORD-2026-00134""]",high,exact_match,,,,0
+STL-00130,exact,"[""ORD-2026-00135""]",high,exact_match,,,,0
+STL-00131,exact,"[""ORD-2026-00136""]",high,exact_match,,,,0
+STL-00132,exact,"[""ORD-2026-00137""]",high,exact_match,,,,0
+STL-00133,exact,"[""ORD-2026-00138""]",high,exact_match,,,,0
+STL-00134,exact,"[""ORD-2026-00139""]",high,exact_match,,,,0
+STL-00135,exact,"[""ORD-2026-00140""]",high,exact_match,,,,0
+STL-00136,exact,"[""ORD-2026-00141""]",high,exact_match,,,,0
+STL-00137,exact,"[""ORD-2026-00142""]",high,exact_match,,,,0
+STL-00138,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 4528.95.""}",accepted,no_match,1538
+STL-00139,exact,"[""ORD-2026-00144""]",high,exact_match,,,,0
+STL-00140,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders have an amount matching the settlement amount of 79.19.""}",accepted,no_match,1199
+STL-00141,exact,"[""ORD-2026-00146""]",high,exact_match,,,,0
+STL-00142,exact,"[""ORD-2026-00147""]",high,exact_match,,,,0
+STL-00143,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount or transformed amount matches the settlement amount of 1130.25.""}",accepted,no_match,3613
+STL-00144,exact,"[""ORD-2026-00149""]",high,exact_match,,,,0
+STL-00145,exact,"[""ORD-2026-00149""]",high,exact_match,,,,0
+STL-00146,exact,"[""ORD-2026-00150""]",high,exact_match,,,,0
+STL-00147,exact,"[""ORD-2026-00151""]",high,exact_match,,,,0
+STL-00148,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount and reference correctly.""}",accepted,no_match,1829
+STL-00149,exact,"[""ORD-2026-00153""]",high,exact_match,,,,0
+STL-00150,exact,"[""ORD-2026-00153""]",high,exact_match,,,,0
+STL-00151,exact,"[""ORD-2026-00154""]",high,exact_match,,,,0
+STL-00152,exact,"[""ORD-2026-00155""]",high,exact_match,,,,0
+STL-00153,exact,"[""ORD-2026-00156""]",high,exact_match,,,,0
+STL-00154,exact,"[""ORD-2026-00156""]",high,exact_match,,,,0
+STL-00155,exact,"[""ORD-2026-00157""]",high,exact_match,,,,0
+STL-00156,exact,"[""ORD-2026-00158""]",high,exact_match,,,,0
+STL-00157,exact,"[""ORD-2026-00159""]",high,exact_match,,,,0
+STL-00158,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount or transformed reference matches the settlement amount of 2841.65.""}",accepted,no_match,3240
+STL-00159,exact,"[""ORD-2026-00161""]",high,exact_match,,,,0
+STL-00160,exact,"[""ORD-2026-00161""]",high,exact_match,,,,0
+STL-00161,fuzzy,"[""ORD-2026-00162""]",high,normalized_exact,,,,0
+STL-00162,exact,"[""ORD-2026-00163""]",high,exact_match,,,,0
+STL-00163,exact,"[""ORD-2026-00164""]",high,exact_match,,,,0
+STL-00164,exact,"[""ORD-2026-00165""]",high,exact_match,,,,0
+STL-00165,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": null, ""confidence"": ""low"", ""evidence"": ""No candidate order matches the settlement amount of 548.87 within expected tolerances.""}",rejected,missing matched_order_id,1312
+STL-00166,llm,"[""ORD-2026-00167""]",high,llm_truncated_ref,"{""reason"": ""truncated_ref"", ""matched_order_id"": ""ORD-2026-00167"", ""confidence"": ""high"", ""evidence"": ""Settlement amount 3022.04 matches order ORD-2026-00167 amount exactly with a similar reference.""}",accepted,,1300
+STL-00167,exact,"[""ORD-2026-00168""]",high,exact_match,,,,0
+STL-00168,exact,"[""ORD-2026-00169""]",high,exact_match,,,,0
+STL-00169,exact,"[""ORD-2026-00170""]",high,exact_match,,,,0
+STL-00170,fuzzy,"[""ORD-2026-00171""]",high,normalized_exact,,,,0
+STL-00171,fuzzy,"[""ORD-2026-00172""]",high,normalized_exact,,,,0
+STL-00172,exact,"[""ORD-2026-00173""]",high,exact_match,,,,0
+STL-00173,fuzzy,"[""ORD-2026-00174""]",medium,fuzzy_ref:0.92,,,,64
+STL-00174,exact,"[""ORD-2026-00175""]",high,exact_match,,,,0
+STL-00175,exact,"[""ORD-2026-00175""]",high,exact_match,,,,0
+STL-00176,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount or references.""}",accepted,no_match,1405
+STL-00177,exact,"[""ORD-2026-00179""]",high,exact_match,,,,0
+STL-00178,fuzzy,"[""ORD-2026-00180""]",medium,fuzzy_ref:0.92,,,,60
+STL-00179,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 1727.92 even when accounting for fees or refunds.""}",accepted,no_match,1144
+STL-00180,exact,"[""ORD-2026-00182""]",high,exact_match,,,,0
+STL-00181,exact,"[""ORD-2026-00183""]",high,exact_match,,,,0
+STL-00182,exact,"[""ORD-2026-00184""]",high,exact_match,,,,0
+STL-00183,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount or reference matches the settlement details.""}",accepted,no_match,1097
+STL-00184,exact,"[""ORD-2026-00186""]",high,exact_match,,,,0
+STL-00185,exact,"[""ORD-2026-00187""]",high,exact_match,,,,0
+STL-00186,exact,"[""ORD-2026-00188""]",high,exact_match,,,,0
+STL-00187,exact,"[""ORD-2026-00188""]",high,exact_match,,,,0
+STL-00188,fuzzy,"[""ORD-2026-00189""]",high,normalized_exact,,,,0
+STL-00189,fuzzy,"[""ORD-2026-00190""]",high,normalized_exact,,,,0
+STL-00190,exact,"[""ORD-2026-00191""]",high,exact_match,,,,0
+STL-00191,fuzzy,"[""ORD-2026-00192""]",medium,fuzzy_ref:0.92,,,,60
+STL-00192,exact,"[""ORD-2026-00193""]",high,exact_match,,,,0
+STL-00193,exact,"[""ORD-2026-00194""]",high,exact_match,,,,0
+STL-00194,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount matches the settlement amount of 4661.18 within expected fee or refund margins.""}",accepted,no_match,3075
+STL-00195,exact,"[""ORD-2026-00196""]",high,exact_match,,,,0
+STL-00196,exact,"[""ORD-2026-00197""]",high,exact_match,,,,0
+STL-00197,exact,"[""ORD-2026-00198""]",high,exact_match,,,,0
+STL-00198,exact,"[""ORD-2026-00199""]",high,exact_match,,,,0
+STL-00199,exact,"[""ORD-2026-00200""]",high,exact_match,,,,0
+STL-00200,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 9096.87.""}",accepted,no_match,1265
+STL-00201,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount or reference matches the settlement amount of 827.43.""}",accepted,no_match,1420
+STL-00202,exact,"[""ORD-2026-00205""]",high,exact_match,,,,0
+STL-00203,exact,"[""ORD-2026-00206""]",high,exact_match,,,,0
+STL-00204,exact,"[""ORD-2026-00207""]",high,exact_match,,,,0
+STL-00205,fuzzy,"[""ORD-2026-00208""]",high,normalized_exact,,,,0
+STL-00206,exact,"[""ORD-2026-00209""]",high,exact_match,,,,0
+STL-00207,exact,"[""ORD-2026-00210""]",high,exact_match,,,,0
+STL-00208,exact,"[""ORD-2026-00211""]",high,exact_match,,,,0
+STL-00209,exact,"[""ORD-2026-00212""]",high,exact_match,,,,0
+STL-00210,exact,"[""ORD-2026-00212""]",high,exact_match,,,,0
+STL-00211,fuzzy,"[""ORD-2026-00213""]",high,normalized_exact,,,,0
+STL-00212,fuzzy,"[""ORD-2026-00214""]",high,normalized_exact,,,,0
+STL-00213,exact,"[""ORD-2026-00215""]",high,exact_match,,,,0
+STL-00214,exact,"[""ORD-2026-00216""]",high,exact_match,,,,0
+STL-00215,exact,"[""ORD-2026-00217""]",high,exact_match,,,,0
+STL-00216,exact,"[""ORD-2026-00218""]",high,exact_match,,,,0
+STL-00217,exact,"[""ORD-2026-00219""]",high,exact_match,,,,0
+STL-00218,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00220"", ""confidence"": ""high"", ""evidence"": ""Settlement amount 2234.53 does not match order 3192.18 minus fee 32.62. Wait, let me check the arithmetic: 3192.18 - 32.62 = 3159.56. That doesn't match 2234.53. Let me re-read. Wait, 3192.18 - 2234.53 = 957.65. None of the candidates match properly, or maybe no_match?""}",rejected,"fee arithmetic fails: delta=-957.65, fee=32.62",1591
+STL-00219,exact,"[""ORD-2026-00221""]",high,exact_match,,,,0
+STL-00220,exact,"[""ORD-2026-00222""]",high,exact_match,,,,0
+STL-00221,llm,"[""ORD-2026-00283""]",low,llm_fee_difference,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00283"", ""confidence"": ""low"", ""evidence"": ""Settlement amount 4036.38 differs from ORD-2026-00283 amount 4160.84 by 124.46, which might include unlisted fees.""}",accepted,,1261
+STL-00222,exact,"[""ORD-2026-00224""]",high,exact_match,,,,0
+STL-00223,exact,"[""ORD-2026-00225""]",high,exact_match,,,,0
+STL-00224,fuzzy,"[""ORD-2026-00226""]",high,normalized_exact,,,,0
+STL-00225,exact,"[""ORD-2026-00227""]",high,exact_match,,,,0
+STL-00226,exact,"[""ORD-2026-00228""]",high,exact_match,,,,0
+STL-00227,exact,"[""ORD-2026-00229""]",high,exact_match,,,,0
+STL-00228,exact,"[""ORD-2026-00230""]",high,exact_match,,,,0
+STL-00229,exact,"[""ORD-2026-00231""]",high,exact_match,,,,0
+STL-00230,exact,"[""ORD-2026-00232""]",high,exact_match,,,,0
+STL-00231,fuzzy,"[""ORD-2026-00233""]",high,fee_recorded,,,,67
+STL-00232,exact,"[""ORD-2026-00234""]",high,exact_match,,,,0
+STL-00233,exact,"[""ORD-2026-00235""]",high,exact_match,,,,0
+STL-00234,exact,"[""ORD-2026-00235""]",high,exact_match,,,,0
+STL-00235,fuzzy,"[""ORD-2026-00236""]",high,normalized_exact,,,,0
+STL-00236,fuzzy,"[""ORD-2026-00237""]",high,normalized_exact,,,,0
+STL-00237,exact,"[""ORD-2026-00238""]",high,exact_match,,,,0
+STL-00238,exact,"[""ORD-2026-00239""]",high,exact_match,,,,0
+STL-00239,exact,"[""ORD-2026-00240""]",high,exact_match,,,,0
+STL-00240,exact,"[""ORD-2026-00240""]",high,exact_match,,,,0
+STL-00241,exact,"[""ORD-2026-00241""]",high,exact_match,,,,0
+STL-00242,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": null, ""confidence"": ""low"", ""evidence"": ""No candidate order matches the settlement amount of 1740.78 within expected fee or refund margins.""}",rejected,missing matched_order_id,1136
+STL-00243,exact,"[""ORD-2026-00243""]",high,exact_match,,,,0
+STL-00244,exact,"[""ORD-2026-00244""]",high,exact_match,,,,0
+STL-00245,exact,"[""ORD-2026-00245""]",high,exact_match,,,,0
+STL-00246,exact,"[""ORD-2026-00246""]",high,exact_match,,,,0
+STL-00247,exact,"[""ORD-2026-00247""]",high,exact_match,,,,0
+STL-00248,exact,"[""ORD-2026-00248""]",high,exact_match,,,,0
+STL-00249,exact,"[""ORD-2026-00249""]",high,exact_match,,,,0
+STL-00250,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00350"", ""confidence"": ""high"", ""evidence"": ""Settlement amount 2626.93 matches order amount 2458.83? Wait, let's check: 2458.83 + 26.87 = 2485.70. Wait, 2653.46 - 26.87 = 2626.59? Let's check candidate ORD-2026-00350 with amount 2458.83 and fee 26.87? No, wait. Let's look at ORD-2026-00250: amount 2653.46, fee 0.0. Wait, 2653.46 minus 26.87 = 2626.59. Wait, what about another order? Let's check ORD-2026-00350: amount 2458.83... Wait, reference is ORD-2026-00250. The reference matches ORD-2026-00250 exactly. Order amount is 2653.46, settlement is 2626.93. The difference is 26.53 (likely a percentage fee or gateway fee).""}",rejected,"fee arithmetic fails: delta=168.1, fee=26.87",1894
+STL-00251,exact,"[""ORD-2026-00251""]",high,exact_match,,,,0
+STL-00252,exact,"[""ORD-2026-00252""]",high,exact_match,,,,0
+STL-00253,exact,"[""ORD-2026-00253""]",high,exact_match,,,,0
+STL-00254,fuzzy,"[""ORD-2026-00254""]",high,normalized_exact,,,,0
+STL-00255,exact,"[""ORD-2026-00255""]",high,exact_match,,,,0
+STL-00256,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount matches the settlement amount of 227.7.""}",accepted,no_match,1144
+STL-00257,exact,"[""ORD-2026-00257""]",high,exact_match,,,,0
+STL-00258,exact,"[""ORD-2026-00258""]",high,exact_match,,,,0
+STL-00259,exact,"[""ORD-2026-00259""]",high,exact_match,,,,0
+STL-00260,exact,"[""ORD-2026-00260""]",high,exact_match,,,,0
+STL-00261,exact,"[""ORD-2026-00261""]",high,exact_match,,,,0
+STL-00262,exact,"[""ORD-2026-00262""]",high,exact_match,,,,0
+STL-00263,exact,"[""ORD-2026-00263""]",high,exact_match,,,,0
+STL-00264,exact,"[""ORD-2026-00263""]",high,exact_match,,,,0
+STL-00265,exact,"[""ORD-2026-00264""]",high,exact_match,,,,0
+STL-00266,exact,"[""ORD-2026-00265""]",high,exact_match,,,,0
+STL-00267,llm,"[""ORD-2026-00266""]",high,llm_substituted_digit,"{""reason"": ""substituted_digit"", ""matched_order_id"": ""ORD-2026-00266"", ""confidence"": ""high"", ""evidence"": ""The settlement amount exactly matches the order amount of 3404.17, and the reference ORD-2026-00766 has a single digit substitution compared to ORD-2026-00266.""}",accepted,,1174
+STL-00268,exact,"[""ORD-2026-00267""]",high,exact_match,,,,0
+STL-00269,exact,"[""ORD-2026-00268""]",high,exact_match,,,,0
+STL-00270,fuzzy,"[""ORD-2026-00269""]",high,normalized_exact,,,,0
+STL-00271,fuzzy,"[""ORD-2026-00270"", ""ORD-2026-00271""]",medium,merged_sum_2,,,,100
+STL-00272,exact,"[""ORD-2026-00272""]",high,exact_match,,,,0
+STL-00273,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 2411.3 when factoring in standard fees or refunds.""}",accepted,no_match,1175
+STL-00274,exact,"[""ORD-2026-00274""]",high,exact_match,,,,0
+STL-00275,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 2138.48 within expected tolerances.""}",accepted,no_match,1385
+STL-00276,exact,"[""ORD-2026-00276""]",high,exact_match,,,,0
+STL-00277,llm,"[""ORD-2026-00327""]",high,llm_fee_difference,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00327"", ""confidence"": ""high"", ""evidence"": ""The order amount 3342.28 minus fee 62.98 equals the settlement amount 3312.95, and the reference ends in 327.""}",accepted,,1030
+STL-00278,fuzzy,"[""ORD-2026-00366"", ""ORD-2026-00406""]",medium,merged_sum_2,,,,46
+STL-00279,exact,"[""ORD-2026-00279""]",high,exact_match,,,,0
+STL-00280,exact,"[""ORD-2026-00280""]",high,exact_match,,,,0
+STL-00281,fuzzy,"[""ORD-2026-00281"", ""ORD-2026-00282""]",medium,merged_sum_2,,,,87
+STL-00282,exact,"[""ORD-2026-00283""]",high,exact_match,,,,0
+STL-00283,exact,"[""ORD-2026-00284""]",high,exact_match,,,,0
+STL-00284,fuzzy,"[""ORD-2026-00285""]",high,normalized_exact,,,,0
+STL-00285,exact,"[""ORD-2026-00286""]",high,exact_match,,,,0
+STL-00286,exact,"[""ORD-2026-00287""]",high,exact_match,,,,0
+STL-00287,fuzzy,"[""ORD-2026-00288""]",high,normalized_exact,,,,0
+STL-00288,exact,"[""ORD-2026-00289""]",high,exact_match,,,,0
+STL-00289,exact,"[""ORD-2026-00290""]",high,exact_match,,,,0
+STL-00290,exact,"[""ORD-2026-00291""]",high,exact_match,,,,0
+STL-00291,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 172.13 closely enough after accounting for fees or refunds.""}",accepted,no_match,1107
+STL-00292,exact,"[""ORD-2026-00293""]",high,exact_match,,,,0
+STL-00293,exact,"[""ORD-2026-00293""]",high,exact_match,,,,0
+STL-00294,exact,"[""ORD-2026-00294""]",high,exact_match,,,,0
+STL-00295,llm,"[""ORD-2026-00295""]",high,llm_substituted_digit,"{""reason"": ""substituted_digit"", ""matched_order_id"": ""ORD-2026-00295"", ""confidence"": ""high"", ""evidence"": ""The settlement amount 741.9 exactly matches the order amount of ORD-2026-00295, with a minor reference digit difference.""}",accepted,,1641
+STL-00296,exact,"[""ORD-2026-00296""]",high,exact_match,,,,0
+STL-00297,exact,"[""ORD-2026-00297""]",high,exact_match,,,,0
+STL-00298,exact,"[""ORD-2026-00298""]",high,exact_match,,,,0
+STL-00299,exact,"[""ORD-2026-00299""]",high,exact_match,,,,0
+STL-00300,exact,"[""ORD-2026-00300""]",high,exact_match,,,,0
+STL-00301,fuzzy,"[""ORD-2026-00301""]",high,normalized_exact,,,,0
+STL-00302,exact,"[""ORD-2026-00302""]",high,exact_match,,,,0
+STL-00303,llm,"[""ORD-2026-00303""]",high,llm_substituted_digit,"{""reason"": ""substituted_digit"", ""matched_order_id"": ""ORD-2026-00303"", ""confidence"": ""high"", ""evidence"": ""The settlement amount 2745.11 matches the order amount exactly, and the reference ORD-2026-00603 has a substituted digit compared to ORD-2026-00303.""}",accepted,,1346
+STL-00304,exact,"[""ORD-2026-00304""]",high,exact_match,,,,0
+STL-00305,exact,"[""ORD-2026-00305""]",high,exact_match,,,,0
+STL-00306,exact,"[""ORD-2026-00306""]",high,exact_match,,,,0
+STL-00307,exact,"[""ORD-2026-00307""]",high,exact_match,,,,0
+STL-00308,exact,"[""ORD-2026-00308""]",high,exact_match,,,,0
+STL-00309,exact,"[""ORD-2026-00309""]",high,exact_match,,,,0
+STL-00310,exact,"[""ORD-2026-00310""]",high,exact_match,,,,0
+STL-00311,exact,"[""ORD-2026-00311""]",high,exact_match,,,,0
+STL-00312,exact,"[""ORD-2026-00312""]",high,exact_match,,,,0
+STL-00313,fuzzy,"[""ORD-2026-00313""]",medium,fuzzy_ref:0.92,,,,32
+STL-00314,exact,"[""ORD-2026-00314""]",high,exact_match,,,,0
+STL-00315,fuzzy,"[""ORD-2026-00315""]",high,normalized_exact,,,,0
+STL-00316,exact,"[""ORD-2026-00316""]",high,exact_match,,,,0
+STL-00317,fuzzy,"[""ORD-2026-00317""]",high,normalized_exact,,,,0
+STL-00318,exact,"[""ORD-2026-00318""]",high,exact_match,,,,0
+STL-00319,exact,"[""ORD-2026-00319""]",high,exact_match,,,,0
+STL-00320,exact,"[""ORD-2026-00320""]",high,exact_match,,,,0
+STL-00321,exact,"[""ORD-2026-00321""]",high,exact_match,,,,0
+STL-00322,fuzzy,"[""ORD-2026-00322""]",medium,fuzzy_ref:0.86,,,,45
+STL-00323,fuzzy,"[""ORD-2026-00323""]",high,normalized_exact,,,,0
+STL-00324,exact,"[""ORD-2026-00324""]",high,exact_match,,,,0
+STL-00325,exact,"[""ORD-2026-00325""]",high,exact_match,,,,0
+STL-00326,exact,"[""ORD-2026-00326""]",high,exact_match,,,,0
+STL-00327,exact,"[""ORD-2026-00327""]",high,exact_match,,,,0
+STL-00328,exact,"[""ORD-2026-00328""]",high,exact_match,,,,0
+STL-00329,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""The settlement amount 7315.08 does not match any candidate order amount or valid combination of fees/refunds.""}",accepted,no_match,1362
+STL-00330,exact,"[""ORD-2026-00332""]",high,exact_match,,,,0
+STL-00331,exact,"[""ORD-2026-00333""]",high,exact_match,,,,0
+STL-00332,exact,"[""ORD-2026-00334""]",high,exact_match,,,,0
+STL-00333,exact,"[""ORD-2026-00335""]",high,exact_match,,,,0
+STL-00334,exact,"[""ORD-2026-00336""]",high,exact_match,,,,0
+STL-00335,exact,"[""ORD-2026-00336""]",high,exact_match,,,,0
+STL-00336,fuzzy,"[""ORD-2026-00337""]",high,normalized_exact,,,,0
+STL-00337,exact,"[""ORD-2026-00338""]",high,exact_match,,,,0
+STL-00338,exact,"[""ORD-2026-00338""]",high,exact_match,,,,0
+STL-00339,exact,"[""ORD-2026-00339""]",high,exact_match,,,,0
+STL-00340,fuzzy,"[""ORD-2026-00340"", ""ORD-2026-00341""]",medium,merged_sum_2,,,,85
+STL-00341,exact,"[""ORD-2026-00342""]",high,exact_match,,,,0
+STL-00342,exact,"[""ORD-2026-00343""]",high,exact_match,,,,0
+STL-00343,exact,"[""ORD-2026-00344""]",high,exact_match,,,,0
+STL-00344,exact,"[""ORD-2026-00345""]",high,exact_match,,,,0
+STL-00345,exact,"[""ORD-2026-00346""]",high,exact_match,,,,0
+STL-00346,exact,"[""ORD-2026-00347""]",high,exact_match,,,,0
+STL-00347,fuzzy,"[""ORD-2026-00348"", ""ORD-2026-00349""]",medium,merged_sum_2,,,,68
+STL-00348,fuzzy,"[""ORD-2026-00350""]",high,normalized_exact,,,,0
+STL-00349,exact,"[""ORD-2026-00351""]",high,exact_match,,,,0
+STL-00350,exact,"[""ORD-2026-00352""]",high,exact_match,,,,0
+STL-00351,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""The settlement amount of 919.69 does not match any candidate order amount or fit any valid difference pattern.""}",accepted,no_match,1427
+STL-00352,exact,"[""ORD-2026-00354""]",high,exact_match,,,,0
+STL-00353,exact,"[""ORD-2026-00355""]",high,exact_match,,,,0
+STL-00354,exact,"[""ORD-2026-00356""]",high,exact_match,,,,0
+STL-00355,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00381"", ""confidence"": ""low"", ""evidence"": ""No exact match found, but checking fees.""}",rejected,"fee arithmetic fails: delta=663.19, fee=23.57",1345
+STL-00356,exact,"[""ORD-2026-00358""]",high,exact_match,,,,0
+STL-00357,exact,"[""ORD-2026-00359""]",high,exact_match,,,,0
+STL-00358,exact,"[""ORD-2026-00360""]",high,exact_match,,,,0
+STL-00359,exact,"[""ORD-2026-00361""]",high,exact_match,,,,0
+STL-00360,fuzzy,"[""ORD-2026-00362""]",high,normalized_exact,,,,0
+STL-00361,exact,"[""ORD-2026-00363""]",high,exact_match,,,,0
+STL-00362,exact,"[""ORD-2026-00363""]",high,exact_match,,,,0
+STL-00363,exact,"[""ORD-2026-00364""]",high,exact_match,,,,0
+STL-00364,exact,"[""ORD-2026-00365""]",high,exact_match,,,,0
+STL-00365,fuzzy,"[""ORD-2026-00366""]",high,normalized_exact,,,,0
+STL-00366,exact,"[""ORD-2026-00367""]",high,exact_match,,,,0
+STL-00367,exact,"[""ORD-2026-00368""]",high,exact_match,,,,0
+STL-00368,exact,"[""ORD-2026-00369""]",high,exact_match,,,,0
+STL-00369,exact,"[""ORD-2026-00370""]",high,exact_match,,,,0
+STL-00370,exact,"[""ORD-2026-00371""]",high,exact_match,,,,0
+STL-00371,exact,"[""ORD-2026-00372""]",high,exact_match,,,,0
+STL-00372,exact,"[""ORD-2026-00373""]",high,exact_match,,,,0
+STL-00373,exact,"[""ORD-2026-00374""]",high,exact_match,,,,0
+STL-00374,exact,"[""ORD-2026-00375""]",high,exact_match,,,,0
+STL-00375,exact,"[""ORD-2026-00376""]",high,exact_match,,,,0
+STL-00376,exact,"[""ORD-2026-00377""]",high,exact_match,,,,0
+STL-00377,fuzzy,"[""ORD-2026-00378""]",high,normalized_exact,,,,0
+STL-00378,exact,"[""ORD-2026-00379""]",high,exact_match,,,,0
+STL-00379,fuzzy,"[""ORD-2026-00380"", ""ORD-2026-00381""]",medium,merged_sum_2,,,,93
+STL-00380,fuzzy,"[""ORD-2026-00382"", ""ORD-2026-00383""]",medium,merged_sum_2,,,,76
+STL-00381,fuzzy,"[""ORD-2026-00384""]",high,normalized_exact,,,,0
+STL-00382,exact,"[""ORD-2026-00385""]",high,exact_match,,,,0
+STL-00383,exact,"[""ORD-2026-00386""]",high,exact_match,,,,0
+STL-00384,exact,"[""ORD-2026-00387""]",high,exact_match,,,,0
+STL-00385,exact,"[""ORD-2026-00388""]",high,exact_match,,,,0
+STL-00386,exact,"[""ORD-2026-00389""]",high,exact_match,,,,0
+STL-00387,exact,"[""ORD-2026-00390""]",high,exact_match,,,,0
+STL-00388,exact,"[""ORD-2026-00391""]",high,exact_match,,,,0
+STL-00389,exact,"[""ORD-2026-00392""]",high,exact_match,,,,0
+STL-00390,exact,"[""ORD-2026-00393""]",high,exact_match,,,,0
+STL-00391,exact,"[""ORD-2026-00394""]",high,exact_match,,,,0
+STL-00392,exact,"[""ORD-2026-00395""]",high,exact_match,,,,0
+STL-00393,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount or transformed amount matches the settlement amount of 4229.92.""}",accepted,no_match,1697
+STL-00394,exact,"[""ORD-2026-00397""]",high,exact_match,,,,0
+STL-00395,exact,"[""ORD-2026-00398""]",high,exact_match,,,,0
+STL-00396,exact,"[""ORD-2026-00399""]",high,exact_match,,,,0
+STL-00397,exact,"[""ORD-2026-00400""]",high,exact_match,,,,0
+STL-00398,exact,"[""ORD-2026-00401""]",high,exact_match,,,,0
+STL-00399,exact,"[""ORD-2026-00402""]",high,exact_match,,,,0
+STL-00400,exact,"[""ORD-2026-00403""]",high,exact_match,,,,0
+STL-00401,fuzzy,"[""ORD-2026-00404"", ""ORD-2026-00405""]",medium,merged_sum_2,,,,71
+STL-00402,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 6277.8 or the referenced order IDs.""}",accepted,no_match,1401
+STL-00403,llm,"[""ORD-2026-00408""]",low,llm_fee_difference,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00408"", ""confidence"": ""low"", ""evidence"": ""The settlement reference matches ORD-2026-00408, but the amount is lower by 7.35 which may represent a fee.""}",accepted,,1457
+STL-00404,exact,"[""ORD-2026-00409""]",high,exact_match,,,,0
+STL-00405,exact,"[""ORD-2026-00410""]",high,exact_match,,,,0
+STL-00406,exact,"[""ORD-2026-00411""]",high,exact_match,,,,0
+STL-00407,exact,"[""ORD-2026-00412""]",high,exact_match,,,,0
+STL-00408,exact,"[""ORD-2026-00413""]",high,exact_match,,,,0
+STL-00409,exact,"[""ORD-2026-00414""]",high,exact_match,,,,0
+STL-00410,exact,"[""ORD-2026-00415""]",high,exact_match,,,,0
+STL-00411,exact,"[""ORD-2026-00416""]",high,exact_match,,,,0
+STL-00412,fuzzy,"[""ORD-2026-00417""]",high,normalized_exact,,,,0
+STL-00413,exact,"[""ORD-2026-00418""]",high,exact_match,,,,0
+STL-00414,exact,"[""ORD-2026-00419""]",high,exact_match,,,,0
+STL-00415,exact,"[""ORD-2026-00420""]",high,exact_match,,,,0
+STL-00416,exact,"[""ORD-2026-00421""]",high,exact_match,,,,0
+STL-00417,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount matches the settlement amount of 2289.58 within expected fee or refund tolerances.""}",accepted,no_match,1055
+STL-00418,exact,"[""ORD-2026-00423""]",high,exact_match,,,,0
+STL-00419,exact,"[""ORD-2026-00424""]",high,exact_match,,,,0
+STL-00420,exact,"[""ORD-2026-00424""]",high,exact_match,,,,0
+STL-00421,exact,"[""ORD-2026-00425""]",high,exact_match,,,,0
+STL-00422,fuzzy,"[""ORD-2026-00426""]",high,normalized_exact,,,,0
+STL-00423,exact,"[""ORD-2026-00427""]",high,exact_match,,,,0
+STL-00424,exact,"[""ORD-2026-00428""]",high,exact_match,,,,0
+STL-00425,exact,"[""ORD-2026-00429""]",high,exact_match,,,,0
+STL-00426,exact,"[""ORD-2026-00430""]",high,exact_match,,,,0
+STL-00427,exact,"[""ORD-2026-00431""]",high,exact_match,,,,0
+STL-00428,exact,"[""ORD-2026-00432""]",high,exact_match,,,,0
+STL-00429,exact,"[""ORD-2026-00433""]",high,exact_match,,,,0
+STL-00430,exact,"[""ORD-2026-00434""]",high,exact_match,,,,0
+STL-00431,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount matches the settlement amount of 1502.54 within expected tolerances or refund/fee logic.""}",accepted,no_match,1360
+STL-00432,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""The settlement amount 2601.15 does not match any candidate order amount or fit any valid fee/refund difference.""}",accepted,no_match,1704
+STL-00433,exact,"[""ORD-2026-00437""]",high,exact_match,,,,0
+STL-00434,exact,"[""ORD-2026-00437""]",high,exact_match,,,,0
+STL-00435,fuzzy,"[""ORD-2026-00438""]",high,normalized_exact,,,,0
+STL-00436,exact,"[""ORD-2026-00439""]",high,exact_match,,,,0
+STL-00437,exact,"[""ORD-2026-00440""]",high,exact_match,,,,0
+STL-00438,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""The settlement amount does not match any candidate order amount or fit any valid discrepancy pattern.""}",accepted,no_match,1364
+STL-00439,exact,"[""ORD-2026-00442""]",high,exact_match,,,,0
+STL-00440,fuzzy,"[""ORD-2026-00443""]",medium,fuzzy_ref:0.92,,,,30
+STL-00441,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00444"", ""confidence"": ""low"", ""evidence"": ""Settlement amount does not match order amount minus fee (2750.10 - 41.01 = 2709.09), but reference is an exact match.""}",rejected,"fee arithmetic fails: delta=-825.03, fee=41.01",4565
+STL-00442,exact,"[""ORD-2026-00445""]",high,exact_match,,,,0
+STL-00443,exact,"[""ORD-2026-00446""]",high,exact_match,,,,0
+STL-00444,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 10552.73 or the referenced order IDs.""}",accepted,no_match,1201
+STL-00445,exact,"[""ORD-2026-00450""]",high,exact_match,,,,0
+STL-00446,exact,"[""ORD-2026-00451""]",high,exact_match,,,,0
+STL-00447,exact,"[""ORD-2026-00452""]",high,exact_match,,,,0
+STL-00448,exact,"[""ORD-2026-00453""]",high,exact_match,,,,0
+STL-00449,exact,"[""ORD-2026-00454""]",high,exact_match,,,,0
+STL-00450,exact,"[""ORD-2026-00455""]",high,exact_match,,,,0
+STL-00451,exact,"[""ORD-2026-00455""]",high,exact_match,,,,0
+STL-00452,fuzzy,"[""ORD-2026-00456"", ""ORD-2026-00457""]",medium,merged_sum_2,,,,61
+STL-00453,llm,"[""ORD-2026-00458""]",low,llm_fee_difference,"{""reason"": ""fee_difference"", ""matched_order_id"": ""ORD-2026-00458"", ""confidence"": ""low"", ""evidence"": ""The settlement amount 4932.19 is slightly less than the order amount 4982.01 with matching reference.""}",accepted,,1221
+STL-00454,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""The settlement amount 1737.01 does not match any candidate order amount and cannot be explained by a plausible fee or refund.""}",accepted,no_match,1188
+STL-00455,fuzzy,"[""ORD-2026-00460""]",high,normalized_exact,,,,0
+STL-00456,exact,"[""ORD-2026-00461""]",high,exact_match,,,,0
+STL-00457,fuzzy,"[""ORD-2026-00462"", ""ORD-2026-00463""]",medium,merged_sum_2,,,,55
+STL-00458,exact,"[""ORD-2026-00464""]",high,exact_match,,,,0
+STL-00459,exact,"[""ORD-2026-00465""]",high,exact_match,,,,0
+STL-00460,exact,"[""ORD-2026-00466""]",high,exact_match,,,,0
+STL-00461,exact,"[""ORD-2026-00467""]",high,exact_match,,,,0
+STL-00462,exact,"[""ORD-2026-00468""]",high,exact_match,,,,0
+STL-00463,exact,"[""ORD-2026-00469""]",high,exact_match,,,,0
+STL-00464,exact,"[""ORD-2026-00470""]",high,exact_match,,,,0
+STL-00465,exact,"[""ORD-2026-00471""]",high,exact_match,,,,0
+STL-00466,unresolved,[],n/a,llm_rejected,"{""reason"": ""fee_difference"", ""matched_order_id"": null, ""confidence"": ""low"", ""evidence"": ""No candidate order matches the settlement amount of 3077.13 even with fees or refunds.""}",rejected,missing matched_order_id,1301
+STL-00467,exact,"[""ORD-2026-00473""]",high,exact_match,,,,0
+STL-00468,exact,"[""ORD-2026-00474""]",high,exact_match,,,,0
+STL-00469,exact,"[""ORD-2026-00475""]",high,exact_match,,,,0
+STL-00470,fuzzy,"[""ORD-2026-00476""]",medium,fuzzy_ref:0.92,,,,27
+STL-00471,fuzzy,"[""ORD-2026-00477"", ""ORD-2026-00478""]",medium,merged_sum_2,,,,53
+STL-00472,exact,"[""ORD-2026-00479""]",high,exact_match,,,,0
+STL-00473,exact,"[""ORD-2026-00480""]",high,exact_match,,,,0
+STL-00474,exact,"[""ORD-2026-00481""]",high,exact_match,,,,0
+STL-00475,llm,"[""ORD-2026-00482""]",high,llm_substituted_digit,"{""reason"": ""substituted_digit"", ""matched_order_id"": ""ORD-2026-00482"", ""confidence"": ""high"", ""evidence"": ""The settlement amount 4134.92 matches the order amount exactly, and the reference ORD-0026-00482 differs by one substituted digit from ORD-2026-00482.""}",accepted,,1454
+STL-00476,exact,"[""ORD-2026-00483""]",high,exact_match,,,,0
+STL-00477,exact,"[""ORD-2026-00484""]",high,exact_match,,,,0
+STL-00478,exact,"[""ORD-2026-00485""]",high,exact_match,,,,0
+STL-00479,exact,"[""ORD-2026-00486""]",high,exact_match,,,,0
+STL-00480,exact,"[""ORD-2026-00486""]",high,exact_match,,,,0
+STL-00481,exact,"[""ORD-2026-00487""]",high,exact_match,,,,0
+STL-00482,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount matches the settlement amount of 2422.57 within standard fee or refund expectations.""}",accepted,no_match,1038
+STL-00483,exact,"[""ORD-2026-00489""]",high,exact_match,,,,0
+STL-00484,exact,"[""ORD-2026-00490""]",high,exact_match,,,,0
+STL-00485,exact,"[""ORD-2026-00491""]",high,exact_match,,,,0
+STL-00486,exact,"[""ORD-2026-00492""]",high,exact_match,,,,0
+STL-00487,exact,"[""ORD-2026-00493""]",high,exact_match,,,,0
+STL-00488,exact,"[""ORD-2026-00494""]",high,exact_match,,,,0
+STL-00489,fuzzy,"[""ORD-2026-00495""]",high,normalized_exact,,,,0
+STL-00490,exact,"[""ORD-2026-00496""]",high,exact_match,,,,0
+STL-00491,exact,"[""ORD-2026-00497""]",high,exact_match,,,,0
+STL-00492,exact,"[""ORD-2026-00498""]",high,exact_match,,,,0
+STL-00493,exact,"[""ORD-2026-00499""]",high,exact_match,,,,0
+STL-00494,exact,"[""ORD-2026-00500""]",high,exact_match,,,,0
+STL-00495,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 1750.69 or has a close reference.""}",accepted,no_match,1953
+STL-00496,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 3485.45.""}",accepted,no_match,1645
+STL-00497,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 1183.29 or reference ORD-2026-97826.""}",accepted,no_match,1170
+STL-00498,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount or reference aligns with the settlement amount of 560.85.""}",accepted,no_match,1004
+STL-00499,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 728.79.""}",accepted,no_match,1198
+STL-00500,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount matches the settlement amount of 4965.05.""}",accepted,no_match,1365
+STL-00501,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order has an amount or reference matching the settlement line.""}",accepted,no_match,1173
+STL-00502,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""None of the candidate orders match the settlement amount of 3267.6.""}",accepted,no_match,886
+STL-00503,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 3626.04 within expected fee or refund margins.""}",accepted,no_match,1460
+STL-00504,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount or reference matches the settlement details.""}",accepted,no_match,1225
+STL-00505,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order amount matches the settlement amount of 479.11.""}",accepted,no_match,1469
+STL-00506,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 3774.61 with a valid fee, refund, or reference pattern.""}",accepted,no_match,976
+STL-00507,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 1790.1 or has a similar reference.""}",accepted,no_match,958
+STL-00508,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 3965.83 or the reference ORD-2026-97035.""}",accepted,no_match,1069
+STL-00509,unresolved,[],n/a,llm_no_match,"{""reason"": ""no_match"", ""matched_order_id"": null, ""confidence"": ""high"", ""evidence"": ""No candidate order matches the settlement amount of 3240.87 or the reference ORD-2026-94059.""}",accepted,no_match,1272
